@@ -1,6 +1,6 @@
 import supertest from 'supertest'
 import config from '../config/config'
-import { faker } from '@faker-js/faker'
+import users from '../fixtures/user'
 
 const { url } = config
 
@@ -12,7 +12,7 @@ const user = {
      * Функция для авторизации
      * 
      * @param {object} payload - Входные данные для авторизации
-     * @param {string} payload.loginName - Имя пользователя
+     * @param {string} payload.login - Имя пользователя
      * @param {string} payload.password - Пароль пользователя
      * @return {object} - ответ от сервера
      */
@@ -27,24 +27,12 @@ const user = {
     
     async getAuthToken() {
         const payload = config.credentials
-
         const res = await this.login(payload)
         return res.headers['x-user-token']
     },
-    async randomUserCred() {
-        return ({
-            "params": {
-                "name": faker.name.fullName(),
-                "description": faker.lorem.lines(),
-                "enabled": faker.datatype.boolean()
-            },
-            "login": faker.internet.userName(),
-            "password": faker.internet.password()
-        }
-        )
-    },
+    
 
-    create: (token, payload = randomUserCred()) => {
+    create: (token, payload = users.randomUser()) => {
 
         return supertest(url)
             .post('/api/webclient/users/create')
