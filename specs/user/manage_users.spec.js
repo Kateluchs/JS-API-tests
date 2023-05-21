@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import user from '../../framework/services/user'
-
+import users from '../../framework/fixtures/user'
 
 let token
 
@@ -11,22 +11,14 @@ beforeAll(async () => {
 describe('Manage Users', () => {
     describe('POST /api/webclient/users/create', () => {
         test('Positive Create User', async () => {
-            const res = await user.create(token)
+            const res = await user.create(token, await users.randomUser())
             expect(res.status).toEqual(200);
             expect(res.body).toEqual({ status: 'OK', message: null })
         });
 
         test('Negative Create User: user exists', async () => {
-            const input = {
-                "params": {
-                    "name": "admin",
-                    "description": "Самый лучший администратор",
-                    "enabled": true
-                },
-                "login": "admin",
-                "password": "qwerty"
-            }
-            const res = await user.create(token, input)
+            const res = await user.create(token, await users.firstUser())
+
             expect(res.status).toEqual(200);
             expect(res.body).toEqual({ status: 'EXISTS_USER', message: 'EXISTS_USER' });
         });
@@ -49,7 +41,7 @@ describe('Manage Users', () => {
         test('Positive Remove User', async () => {
 
             // Create user
-            const input = await user.randomUserCred()
+            const input = await users.randomUser()
             await user.create(token, input)
 
             //  Delete this user
@@ -62,7 +54,7 @@ describe('Manage Users', () => {
 
         test('Get User Info', async () => {
             // Create user
-            const input = await user.randomUserCred()
+            const input = await users.randomUser()
             await user.create(token, input)
 
             //  Get info of this user

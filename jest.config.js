@@ -1,5 +1,5 @@
 export default {
-    testMatch: ['**/specs/**/*.spec.*'],
+    testMatch: ['**/specs/**/*.spec.js'],
     "transform": {
         "^.+\\.[t|j]sx?$": "babel-jest"
     }
