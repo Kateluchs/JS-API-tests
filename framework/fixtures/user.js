@@ -1,9 +1,9 @@
 import { faker } from '@faker-js/faker'
-var _ = require('lodash');
+import * as lodash from 'lodash'
 
 
 const users = {
-    async randomUser() {
+    randomUser() {
         return ({
             "params": {
                 "name": faker.name.fullName(),
@@ -16,14 +16,14 @@ const users = {
         )
     },
 
-    async activeUser() {
-        return (_.merge(await this.randomUser(), {
+    activeUser() {
+        return (lodash.merge(this.randomUser(), {
             "enabled": true
         }))
     },
 
-      async firstUser(){
-           return(_.merge(await this.randomUser(), {
+      firstUser(){
+           return(lodash.merge(this.randomUser(), {
             "login": "admin"
         }))
  }

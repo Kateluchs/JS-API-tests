@@ -1,9 +1,11 @@
 import { faker } from '@faker-js/faker'
-var _ = require('lodash');
+import * as lodash from 'lodash'
 
-const cameras = {
 
-    async randomCamera() {
+
+export const cameras = {
+
+    randomCamera() {
         return (
             {
                 "name": faker.lorem.words(),
@@ -29,64 +31,62 @@ const cameras = {
                 //   "spot": null
             })
     },
-    async ptzCamera() {
-        return (_.merge(await this.randomCamera(), {
+    ptzCamera() {
+        return (lodash.merge(this.randomCamera(), {
             "model": "otherptz",
             "ptz": true
 
         }))
     },
 
-    async cloudCamera() {
-        return (_.merge(await this.randomCamera(), {
+    cloudCamera() {
+        return (lodash.merge(this.randomCamera(), {
             "cloud": true
 
         }))
     },
 
-    async echdCamera() {
-        return (_.merge(await this.randomCamera(), {
+    echdCamera() {
+        return (lodash.merge(this.randomCamera(), {
             "cloud": true
 
         }))
     },
 
     // принимает на вход массив камер
-    async removeCameras(camerasToRemove) {
+    removeCameras(camerasToRemove) {
         return ({
             "cameras": camerasToRemove
         })
     },
-    async getCamerasbody() {
+    getCamerasbody() {
         return ({
             
                 "orderBy": "NAME",
                 "isAscending": true,
                 "filterText": "",
-                "forUser": "user1",
-                "ignorePermissions": true
-               
-               
-        })
-    },
-    async getDevices() {
-        return ({
-            
-                "orderBy": "NAME",
-                "isAscending": true,
-                "filterText": "",
-                "forUser": "user1",
-                "ignorePermissions": true
-               
-               
+                "forUser": "admin", // потом создавать юзера под запрос
+                "ignorePermissions": true               
         })
     }
 
 
 }
 
-const devices = {
+export const devices = {
     
+    getDevices() {
+        return ({
+            
+                "orderBy": "NAME",
+                "isAscending": true,
+                "filterText": "",
+                "forUser": "admin", // потом создавать юзера под запрос
+                "ignorePermissions": true
+               
+               
+        })
+    }
 }
 
-export default cameras
+

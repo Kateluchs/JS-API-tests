@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker'
 import user from '../../framework/services/user'
 import users from '../../framework/fixtures/user'
-var _ = require('lodash');
 
 let token
 

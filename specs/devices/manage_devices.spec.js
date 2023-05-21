@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker'
 import { expect, jest, test } from '@jest/globals';
 import user from '../../framework/services/user'
-import camera from '../../framework/services/device'
-import cameras from '../../framework/fixtures/devices'
+import { camera, device } from '../../framework/services/device'
+import { cameras, devices } from '../../framework/fixtures/devices'
 
 
 
@@ -89,6 +89,7 @@ describe('Manage Cameras', () => {
             const res = await camera.getCameras(token, cameras.getCamerasbody())
             expect(res.status).toEqual(200);
             expect(res.body.status).toEqual('OK')
+            
 
         });
         test('Negative Get Cameras', async () => {
@@ -102,19 +103,19 @@ describe('Manage Cameras', () => {
 
     describe('POST /api/webclient/devices', () => {
         test('Positive Get Devices without body', async () => {
-            const res = await camera.getDevices(token)
+            const res = await device.getDevices(token)
             expect(res.status).toEqual(200);
             expect(res.body.status).toEqual('OK')
 
         });
         test('Positive Get Devices with body', async () => {
-            const res = await camera.getDevices(token, cameras.getDevices)
+            const res = await device.getDevices(token, devices.getDevices)
             expect(res.status).toEqual(200);
             expect(res.body.status).toEqual('OK')
 
         });
         test('Negative Get Devices', async () => {
-            const res = await camera.getDevices(faker.datatype.uuid())
+            const res = await device.getDevices(faker.datatype.uuid())
             expect(res.body).toEqual({ status: 'INVALID_TOKEN', message: 'Invalid token' });
 
         });

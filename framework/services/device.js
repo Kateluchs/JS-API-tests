@@ -4,7 +4,7 @@ import cameras from '../fixtures/devices'
 
 const { url } = config
 
-const camera = {
+export const camera = {
     create: (token, payload = cameras.randomCamera()) => {
 
         return supertest(url)
@@ -38,14 +38,6 @@ const camera = {
             .send(payload)
     },
 
-    getDevices: (token, payload = null) => {
-        return supertest(url)
-            .post('/api/webclient/devices')
-            .set('Content-type', 'application/json')
-            .set('X-User-Token', `${token}`)
-            .send(payload)
-    },
-
     models:(token) => {
         return supertest(url)
             .get('/api/webclient/models')
@@ -55,9 +47,13 @@ const camera = {
     }
 }
 
-const device = {
-    
+export const device = {
+
+    getDevices: (token, payload = null) => {
+        return supertest(url)
+            .post('/api/webclient/devices')
+            .set('Content-type', 'application/json')
+            .set('X-User-Token', `${token}`)
+            .send(payload)
+    }
 }
-
-
-export default camera
