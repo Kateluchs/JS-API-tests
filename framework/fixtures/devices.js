@@ -53,7 +53,7 @@ export const cameras = {
         }))
     },
 
-    // принимает на вход массив камер
+    // accepts an array of cameras
     removeCameras(camerasToRemove) {
         return ({
             "cameras": camerasToRemove
@@ -65,12 +65,10 @@ export const cameras = {
                 "orderBy": "NAME",
                 "isAscending": true,
                 "filterText": "",
-                "forUser": "admin", // потом создавать юзера под запрос
+                "forUser": "admin", // then create a user on request
                 "ignorePermissions": true               
         })
     }
-
-
 }
 
 export const devices = {
@@ -81,12 +79,8 @@ export const devices = {
                 "orderBy": "NAME",
                 "isAscending": true,
                 "filterText": "",
-                "forUser": "admin", // потом создавать юзера под запрос
-                "ignorePermissions": true
-               
-               
+                "forUser": "admin", // then create a user on request
+                "ignorePermissions": true     
         })
     }
 }
-
-
