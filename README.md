@@ -1,7 +1,7 @@
-## ДЗ по уроку 5: Препарируем http-запросы
+## Мини-тестовый фреймворк API
 
-Чтобы проверить тесты на реальном ПО:
-1. Установить ПО, на котором проводились тесты, можно по [инструкции](https://kb.insentry.io/pages/viewpage.action?pageId=13009553)
-1. На странице http://localhost:9200/d/login создать первого пользователя:  
-Логин: admin  
-Пароль: Qwerty0
+Примеры тестов api платформы для построения систем интеллектуального видеонаблюдения и видеоаналитики [Insentry](https://insentry.io).
+
+## API Mini Test Framework
+
+Examples of API tests of platform for building intelligent video surveillance and video analytics systems [Insentry](https://insentry.io).

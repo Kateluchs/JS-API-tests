@@ -6,15 +6,15 @@ const { url } = config
 
 let token
 
-// Контроллер user
+// Controller user
 const user = {
     /**
-     * Функция для авторизации
+     * Function for authorization
      * 
-     * @param {object} payload - Входные данные для авторизации
-     * @param {string} payload.login - Имя пользователя
-     * @param {string} payload.password - Пароль пользователя
-     * @return {object} - ответ от сервера
+     * @param {object} payload - Input data for authorization
+     * @param {string} payload.login
+     * @param {string} payload.password
+     * @return {object} - response from the server
      */
     login: (payload) => {
 
@@ -41,7 +41,7 @@ const user = {
             .send(payload)
     },
 
-    // Здесь будет кэш
+    // Cache
     /*  async getAuthTokenWithCache() {
             if (token) {
                 return token
@@ -75,7 +75,5 @@ const user = {
             .set('X-User-Token', `${token}`)
             .send()
     }
-
 }
-
 export default user

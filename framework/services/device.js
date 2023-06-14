@@ -14,7 +14,8 @@ export const camera = {
             .send(payload)
     },
     remove: (token, payload) => {
-        //принимает на вход массив
+
+        // accepts an array of cameras 
         return supertest(url)
             .post('/api/webclient/cameras/remove')
             .set('Content-type', 'application/json')
